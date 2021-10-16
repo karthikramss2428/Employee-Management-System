@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Edit Form</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="title">
+      Edit Form
+    </div>
+    <form action="Valid" method="GET">
+    <div class="form">
+        <div class="inputfield">
+            <label>Employee ID</label>
+            <input type="text" class="input" name="id" id="id" readonly>
+         </div>  
+       <div class="inputfield">
+          <label>Name</label>
+          <input type="text" class="input" name="empname" id="empname">
+       </div>  
+        <div class="inputfield">
+          <label>Mobile</label>
+          <input type="text" class="input" name="mobile" id="mobile">
+       </div>  
+       <div class="inputfield">
+          <label>Email</label>
+          <input type="email" class="input" name="email" id="email">
+       </div>  
+      <div class="inputfield">
+          <label>Date of birth</label>
+          <input type="date" class="input" name="dob" id="dob">
+       </div> 
+        <div class="inputfield">
+          <label>Gender</label>
+          <div class="custom_select">
+            <select name="gender" id="gender">
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+       </div> 
+       <div class="inputfield">
+        <input type="hidden" value="2" name="choice">
+      </div>
+      <div class="inputfield">
+        <input type="submit" value="Edit" class="btn">
+      </div>
+    </div>
+  </form>
+</div>	
+<script>
+    var id=localStorage.getItem("col1");
+    var name=localStorage.getItem("col2");
+    var mobile=localStorage.getItem("col3");
+    var email=localStorage.getItem("col4");
+    var dob=localStorage.getItem("col5");
+    var gender=localStorage.getItem("col6");
+    document.getElementById("id").value=id;
+    document.getElementById("empname").value=name;
+    document.getElementById("mobile").value=mobile;
+    document.getElementById("email").value=email;
+    document.getElementById("dob").value=dob;
+    document.getElementById("gender").value=gender;
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+  version="4.0"
+  metadata-complete="true">
+
+   <display-name>Welcome to Tomcat</display-name>
+   <description>
+      Welcome to Tomcat
+   </description>
+   <servlet>
+         <servlet-name>Valid</servlet-name>
+         <servlet-class>Valid</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Valid</servlet-name>
+      <url-pattern>/secure/Valid</url-pattern>
+   </servlet-mapping>
+   <servlet>
+         <servlet-name>Sendemail</servlet-name>
+         <servlet-class>Sendemail</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Sendemail</servlet-name>
+      <url-pattern>/secure/Sendemail</url-pattern>
+   </servlet-mapping>
+   <servlet>
+         <servlet-name>Readempfile</servlet-name>
+         <servlet-class>Readempfile</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Readempfile</servlet-name>
+      <url-pattern>/secure/Readempfile</url-pattern>
+   </servlet-mapping>
+   <servlet>
+         <servlet-name>signup</servlet-name>
+         <servlet-class>signup</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>signup</servlet-name>
+      <url-pattern>/secure/signup</url-pattern>
+   </servlet-mapping>
+   <context-param>
+      <param-name>host</param-name>
+      <param-value>smtp.gmail.com</param-value>
+   </context-param>
+   <context-param>
+      <param-name>port</param-name>
+      <param-value>587</param-value>
+   </context-param>
+   <context-param>
+      <param-name>user</param-name>
+      <param-value>karthikramss2824@gmail.com</param-value>
+   </context-param>
+   <context-param>
+      <param-name>pass</param-name>
+      <param-value>Google1235@</param-value>
+   </context-param>
+       <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+        <description>
+	ID webapp
+    </description>
+    <display-name>ID webapp</display-name>
+    <security-constraint>
+      <display-name>Principal</display-name>
+      <web-resource-collection>
+         <web-resource-name>Menu principal</web-resource-name>
+         <url-pattern>/secure/menu.jsp</url-pattern>
+         <http-method>DELETE</http-method>
+         <http-method>GET</http-method>
+         <http-method>POST</http-method>
+         <http-method>PUT</http-method>
+      </web-resource-collection>
+      <auth-constraint>
+         <!-- Anyone with one of the listed roles may access this area -->
+         <role-name>admin</role-name>
+         <role-name>Employee</role-name>
+         <role-name>HR</role-name>
+      </auth-constraint>
+   </security-constraint>
+
+   <security-constraint>
+   <display-name>Example Security Constraint - part 2</display-name>
+      <web-resource-collection>
+         <web-resource-name>Protected Area - Deny methods</web-resource-name>
+         <!-- Define the context-relative URL(s) to be protected -->
+         <url-pattern>/secure/</url-pattern>
+         <http-method-omission>DELETE</http-method-omission>
+         <http-method-omission>GET</http-method-omission>
+         <http-method-omission>POST</http-method-omission>
+         <http-method-omission>PUT</http-method-omission>
+      </web-resource-collection>
+      <!-- An empty auth constraint denies access -->
+      <auth-constraint>
+         <role-name>admin</role-name>
+         <role-name>Employee</role-name>
+         <role-name>HR</role-name>
+      </auth-constraint>
+   </security-constraint>
+
+    <!-- Default login configuration uses form-based authentication -->
+    <login-config>
+      <auth-method>FORM</auth-method>
+      <realm-name>Example Form-Based Authentication Area</realm-name>
+      <form-login-config>
+        <form-login-page>/login.jsp</form-login-page>
+        <form-error-page>/error.jsp</form-error-page>
+      </form-login-config>
+    </login-config>
+
+    <!-- Security roles referenced by this web application -->
+    <security-role>
+      <role-name>admin</role-name>
+    </security-role>
+    <security-role>
+      <role-name>Employee</role-name>
+    </security-role>
+    <security-role>
+      <role-name>HR</role-name>
+    </security-role>
+   <datasources>
+      <local-tx-datasource>
+      <jndi-name>comp/env/jdbc/MySqlDS</jndi-name>
+      <connection-url>jdbc:mysql://localhost:3307/employee</connection-url>
+      <driver-class>com.mysql.jdbc.Driver</driver-class>
+      <user-name>root</user-name>
+      <password>Minesister11@</password>
+      </local-tx-datasource>
+   </datasources>
+</web-app>
+
